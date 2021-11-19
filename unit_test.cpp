@@ -1,8 +1,9 @@
 #include "gtest/gtest.h"
 #include "base.hpp"
-#include "factor.hpp"
+#include "factory.hpp"
 #include "mult.hpp"
 #include "add.hpp"
+#include "rand.hpp"
 #include "op.hpp"
 #include "sub.hpp"
 #include "div.hpp"
@@ -163,67 +164,70 @@ TEST (RandTest, RandNumber){
 
 TEST (StringTest, Add)
 {
-  char** test_val[3]; test_val[0] = "4"; test_val[1] = "+"; test_val[2] = "5";
+  char* test_val[3]; test_val[0] = "4"; test_val[1] = "+"; test_val[2] = "5";
   Factory* parser = new Factory();
   Base* tree = nullptr;
   tree = parser->parse(test_val, 3);
   EXPECT_EQ(tree->stringify(), "(4.000000+5.000000)");
-  EXPECT_EQ(tree->evaluate(), "9");
+  EXPECT_EQ(tree->evaluate(), 9);
 }
+
 
 TEST (StringTest, Sub)
 {
-  char** test_val[3]; test_val[0] = "4"; test_val[1] = "-"; test_val[2] = "5";
+  char* test_val[3]; test_val[0] = "4"; test_val[1] = "-"; test_val[2] = "5";
   Factory* parser = new Factory();
   Base* tree = nullptr;
   tree = parser->parse(test_val, 3);
   EXPECT_EQ(tree->stringify(), "(4.000000-5.000000)");
-  EXPECT_EQ(tree->evaluate(), "-1");
+  EXPECT_EQ(tree->evaluate(), -1);
 }
 
 TEST (StringTest, Mult)
 {
-  char** test_val[3]; test_val[0] = "4"; test_val[1] = "*"; test_val[2] = "5";
+  char* test_val[3]; test_val[0] = "4"; test_val[1] = "*"; test_val[2] = "5";
   Factory* parser = new Factory();
   Base* tree = nullptr;
   tree = parser->parse(test_val, 3);
   EXPECT_EQ(tree->stringify(), "(4.000000*5.000000)");
-  EXPECT_EQ(tree->evaluate(), "20");
+  EXPECT_EQ(tree->evaluate(), 20);
 }
 
 TEST (StringTest, Divide)
 {
-  char** test_val[3]; test_val[0] = "20"; test_val[1] = "/"; test_val[2] = "5";
+  char* test_val[3]; test_val[0] = "20"; test_val[1] = "/"; test_val[2] = "5";
   Factory* parser = new Factory();
   Base* tree = nullptr;
   tree = parser->parse(test_val, 3);
   EXPECT_EQ(tree->stringify(), "(20.000000/5.000000)");
-  EXPECT_EQ(tree->evaluate(), "4");
+  EXPECT_EQ(tree->evaluate(), 4);
 }
 
 TEST (StringTest, Pow)
 {
-  char** test_val[3]; test_val[0] = "6"; test_val[1] = "**"; test_val[2] = "3";
+  char* test_val[3]; test_val[0] = "6"; test_val[1] = "**"; test_val[2] = "3";
   Factory* parser = new Factory();
   Base* tree = nullptr;
   tree = parser->parse(test_val, 3);
   EXPECT_EQ(tree->stringify(), "(6.000000**3.000000)");
-  EXPECT_EQ(tree->evaluate(), "216");
+  EXPECT_EQ(tree->evaluate(), 216);
 }
 
 TEST (StringTest, AllTest)
 {
-  char** test_val[11]; test_val[0] = "6"; test_val[1] = "**"; test_val[2] = "3"; test_val[3] = "+"; test_val[4] = "7"; test_val[5] = "-"; test_val[6] = "2"; test_val[7] = "*"; test_val[8] = "5"; test_val[9] = "/"; test_val[10] = "3";
+  char* test_val[11]; test_val[0] = "6"; test_val[1] = "**"; test_val[2] = "3"; test_val[3] = "+"; test_val[4] = "7"; test_val[5] = "-"; test_val[6] = "2"; test_val[7] = "*"; test_val[8] = "5"; test_val[9] = "/"; test_val[10] = "2";
   Factory* parser = new Factory();
   Base* tree = nullptr;
   tree = parser->parse(test_val, 11);
-  EXPECT_EQ(tree->stringify(), "(((((6.000000**3.000000)+7.000000)-2.000000)*5.000000)/3.000000)");
-  EXPECT_EQ(tree->evaluate(), "368.333");
+  EXPECT_EQ(tree->stringify(), "(((((6.000000**3.000000)+7.000000)-2.000000)*5.000000)/2.000000)");
+  EXPECT_EQ(tree->evaluate(), 552.5);
 }
+
+
 
 TEST (StringTest, InvalidFront)
 {
-  char** test_val[2]; test_val[0] = "+"; test_val[1] = "3";
+  char* test_val[2]; test_val[0] = "+"; test_val[1] = "3";
   Factory* parser = new Factory();
   Base* tree = nullptr;
   tree = parser->parse(test_val, 2);
@@ -232,7 +236,7 @@ TEST (StringTest, InvalidFront)
 
 TEST (StringTest, InvalidEnd)
 {
-  char** test_val[2]; test_val[0] = "3"; test_val[1] = "*"; 
+  char* test_val[2]; test_val[0] = "3"; test_val[1] = "*"; 
   Factory* parser = new Factory();
   Base* tree = nullptr;
   tree = parser->parse(test_val, 2);
@@ -241,7 +245,7 @@ TEST (StringTest, InvalidEnd)
 
 TEST (StringTest, InvalidDouble)
 {
-  char** test_val[3]; test_val[0] = "3"; test_val[1] = "/"; test_val[1] = "+"; 
+  char* test_val[3]; test_val[0] = "3"; test_val[1] = "/"; test_val[1] = "+"; 
   Factory* parser = new Factory();
   Base* tree = nullptr;
   tree = parser->parse(test_val, 3);
