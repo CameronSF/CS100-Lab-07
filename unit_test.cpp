@@ -245,7 +245,7 @@ TEST (StringTest, InvalidEnd)
 
 TEST (StringTest, InvalidDouble)
 {
-  char* test_val[3]; test_val[0] = "3"; test_val[1] = "/"; test_val[1] = "+"; 
+  char* test_val[3]; test_val[0] = "3"; test_val[1] = "/"; test_val[2] = "+"; 
   Factory* parser = new Factory();
   Base* tree = nullptr;
   tree = parser->parse(test_val, 3);
