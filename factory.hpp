@@ -16,6 +16,7 @@ using namespace std;
 class Factory
 {
   public:
+    ~Factory() {delete this;}
     Base* parse(char** input, int length)
     {
       Base* root = nullptr;
