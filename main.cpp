@@ -22,7 +22,7 @@ int main(int argc, char** argv) {
     return 0;
   }
 
-  cout << tree->stringify() << " = " << tree->evaluate()<<endl;
+  cout << tree->stringify() << " = " << tree->evaluate() << endl;
 
   return 0;
 } 
