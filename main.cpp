@@ -21,6 +21,6 @@ int main(int argc, char** argv) {
     cout << "Invalid" << endl;
     return 0;
   }
-  cout << tree->stringify() << " = " << tree->evaluate();
+  cout << tree->stringify() << " = " << tree->evaluate()<<endl;
   return 0;
 } 
