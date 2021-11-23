@@ -5,6 +5,11 @@
 
 #include "op.hpp"
 
+TEST(OpTest, OpStringify) {
+    Op* test = new Op(5);
+    EXPECT_EQ(test->stringify(), "5.000000");
+}
+
 TEST(OpTest, OpEvaluateNonZero) {
     Op* test = new Op(8);
     EXPECT_EQ(test->evaluate(), 8);
